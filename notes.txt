@@ -1,0 +1,3 @@
+# 2026-10-24
+- General game engine using hex-lines and ga libraries.
+- Based on https://github.com/randfur/experiments/blob/main/2026/tap-balloon/main.js and https://github.com/randfur/experiments/blob/main/2026/tap-balloon/utils.js
