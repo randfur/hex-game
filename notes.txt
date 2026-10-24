@@ -1,3 +1,8 @@
 # 2026-10-24
 - General game engine using hex-lines and ga libraries.
 - Based on https://github.com/randfur/experiments/blob/main/2026/tap-balloon/main.js and https://github.com/randfur/experiments/blob/main/2026/tap-balloon/utils.js
+- Exporting a singleton static class HexGame with alias hg also exported for convenience.
+- Creating a hello-world example page to test usage.
+  - Should exercise rendering models.
+- Maybe have a tools/ directory with a model editor.
+  - Could end up becoming an animation editor if the model format gets elaborate enough.
