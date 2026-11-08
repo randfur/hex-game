@@ -1,4 +1,5 @@
 import {HexGame} from '../../src/hex-game.js'
+import {Vec3} from 'ga/src/vec3.js'
 
 function main() {
   HexGame.init();

@@ -1,4 +1,4 @@
-import {HexLinesContext} from '../third-party/hex-lines/src/hex-lines.js';
+import {HexLinesContext} from 'hex-lines/src/hex-lines.js';
 
 let started = false;
 
@@ -23,7 +23,7 @@ export class HexGame {
     ({
       width: this.width,
       height: this.height,
-      hexLinesContext: this.HexLinesContext,
+      hexLinesContext: this.hexLinesContext,
       canvas: this.canvas,
     } = HexLinesContext.setupFullPageContext(hexLinesContextOptions));
     this.hexLines = this.hexLinesContext.createLines();
@@ -43,11 +43,11 @@ export class HexGame {
 
       cleanUpList(this.entities, entity => entity.alive, entity => entity.destroy?.());
 
-      hexLines.clear();
+      this.hexLines.clear();
       for (const entity of this.entities) {
-        entity.draw?.(hexLines);
+        entity.draw?.(this.hexLines);
       }
-      hexLines.draw();
+      this.hexLines.draw();
     }
   }
 
@@ -57,6 +57,16 @@ export class HexGame {
     this.width = width;
     this.height = height;
   }
+}
+
+function cleanUpList(list, filter) {
+  let newLength = 0;
+  for (let i = 0; i < list.length; ++i) {
+    if (filter(list[i])) {
+      list[newLength++] = list[i];
+    }
+  }
+  list.length = newLength;
 }
 
 export const hg = HexGame;

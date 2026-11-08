@@ -1,0 +1,6 @@
+[submodule "third-party/hex-lines"]
+	path = examples/third-party/hex-lines
+	url = git@github.com:randfur/hex-lines.git
+[submodule "examples/third-party/ga"]
+	path = examples/third-party/ga
+	url = git@github.com:randfur/ga.git

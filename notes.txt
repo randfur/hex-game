@@ -1,3 +1,8 @@
+# 2026-11-08
+- Using import maps to avoid diamond dependencies with hex-lines and ga.
+  - Got assistance from Gemini on this approach: https://gemini.google.com/app/34b73924154b8fb6
+- Clients of this libary need to define hex-lines/ and ga/ import paths.
+
 # 2026-10-24
 - General game engine using hex-lines and ga libraries.
 - Based on https://github.com/randfur/experiments/blob/main/2026/tap-balloon/main.js and https://github.com/randfur/experiments/blob/main/2026/tap-balloon/utils.js
