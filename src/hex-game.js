@@ -10,6 +10,11 @@ export class HexGame {
 
   static canvas = null;
   static hexLinesContext = null;
+  static hexLines = null;
+
+  static time = 0;
+  static timeDelta = 0;
+  static frame = 0;
 
   static async init(hexLinesContextOptions) {
     console.assert(!started);
@@ -21,13 +26,14 @@ export class HexGame {
       hexLinesContext: this.HexLinesContext,
       canvas: this.canvas,
     } = HexLinesContext.setupFullPageContext(hexLinesContextOptions));
-    const hexLines = this.hexLinesContext.createLines();
+    this.hexLines = this.hexLinesContext.createLines();
 
     let lastTime = 0;
     while (true) {
-      const time = await new Promise(requestAnimationFrame);
-      const timeDelta = Math.min(1000 / 30, time - lastTime);
-      lastTime = time;
+      ++this.frame;
+      this.time = await new Promise(requestAnimationFrame);
+      this.timeDelta = Math.min(1000 / 30, this.time - lastTime);
+      lastTime = this.time;
 
       for (const entity of this.entities) {
         if (entity.alive) {

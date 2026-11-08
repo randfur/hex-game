@@ -1,18 +1,21 @@
-import {hg} from '../../src/hex-game.js'
+import {HexGame} from '../../src/hex-game.js'
 
 function main() {
-  hg.init();
-  hg.entities.push(new HelloWorld());
+  HexGame.init();
+  HexGame.entities.push(new HelloWorld());
 }
 
 class HelloWorld {
   constructor() {
     this.alive = true;
+    this.modelPoints = [
+      new Vec3(-1, 0, 0),
+      new Vec3(1, 0, 0),
+      new Vec3(0, 1, 0),
+    ];
   }
 
-  draw(hexLines) {
-    hexLines.addPoints([
-      {position: new Vec3(
+  draw() {
   }
 }
 
