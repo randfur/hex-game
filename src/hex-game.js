@@ -1,4 +1,4 @@
-import {HexLinesContext} from 'hex-lines/src/hex-lines.js';
+import {HexLinesContext} from 'hex-lines';
 
 let started = false;
 
@@ -68,5 +68,3 @@ function cleanUpList(list, filter) {
   }
   list.length = newLength;
 }
-
-export const hg = HexGame;
