@@ -1,3 +1,11 @@
+# 2026-11-10
+- Removed examples/.
+  - Can just link to select https://randfur.github.io/experiments/ examples instead as they get built over time.
+  - This removes the submodules which appear duplicated in the experiments project.
+
+# 2026-11-09
+- Fix references to time and time delta.
+
 # 2026-11-08
 - Using import maps to avoid diamond dependencies with hex-lines and ga.
   - Got assistance from Gemini on this approach: https://gemini.google.com/app/34b73924154b8fb6

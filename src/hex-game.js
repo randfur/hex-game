@@ -37,7 +37,7 @@ export class HexGame {
 
       for (const entity of this.entities) {
         if (entity.alive) {
-          entity.update?.(time, timeDelta);
+          entity.update?.(this.time, this.timeDelta);
         }
       }
 
