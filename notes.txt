@@ -11,6 +11,8 @@
   - Matching pattern seen in Unity.
   - Entities can check for clicks in their update() loop.
   - Much less entity iteration and registration management needed, far simpler model.
+- Renamed HexGame to Game.
+  - HexGame, HexPointer, HexKeys etc. were a bit verbose, should be fine to just have the title of the project be hex-game and the classes within be less branded.
 
 # 2026-11-09
 - Fix references to time and time delta.

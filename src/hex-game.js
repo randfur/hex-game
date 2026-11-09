@@ -2,7 +2,7 @@ import {HexLinesContext} from 'hex-lines';
 import {Vec3} from 'ga';
 import {cleanUpList} from './utils.js';
 
-export class HexGame {
+export class Game {
   static entities = [];
 
   static width = null;
@@ -91,8 +91,8 @@ function initInput() {
     Pointer.move = true;
     Pointer.screenPosition.setXyz(event.clientX, event.clientY);
     Pointer.position.setXyz(
-      event.clientX - HexGame.width / 2,
-      -(event.clientY - HexGame.height / 2),
+      event.clientX - Game.width / 2,
+      -(event.clientY - Game.height / 2),
     );
   });
 }
