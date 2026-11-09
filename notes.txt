@@ -2,6 +2,15 @@
 - Removed examples/.
   - Can just link to select https://randfur.github.io/experiments/ examples instead as they get built over time.
   - This removes the submodules which appear duplicated in the experiments project.
+- Cleaned up unused constructor.
+- Added entity.init() call for static classes, called when they're added, useful for static classes that need a signal for when to initialise their variables.
+- Moved private variables to the bottom.
+- Adding Pointer module for pointer input.
+  - Originally was going to host listeners to fire pointerDown/pointerMove events into.
+  - Changed to be a host of pointer state, including whether the pointer buttons were pressed this frame.
+  - Matching pattern seen in Unity.
+  - Entities can check for clicks in their update() loop.
+  - Much less entity iteration and registration management needed, far simpler model.
 
 # 2026-11-09
 - Fix references to time and time delta.

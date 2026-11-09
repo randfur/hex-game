@@ -1,6 +1,6 @@
 import {HexLinesContext} from 'hex-lines';
-
-let started = false;
+import {Vec3} from 'ga';
+import {cleanUpList} from './utils.js';
 
 export class HexGame {
   static entities = [];
@@ -28,6 +28,8 @@ export class HexGame {
     } = HexLinesContext.setupFullPageContext(hexLinesContextOptions));
     this.hexLines = this.hexLinesContext.createLines();
 
+    initInput();
+
     let lastTime = 0;
     while (true) {
       ++this.frame;
@@ -37,36 +39,67 @@ export class HexGame {
 
       for (const entity of this.entities) {
         if (entity.alive) {
-          entity.update?.(this.time, this.timeDelta);
+          entity.update?.(this.timeDelta, this.time);
         }
       }
 
-      cleanUpList(this.entities, entity => entity.alive, entity => entity.destroy?.());
+      cleanUpList(
+        this.entities,
+        entity => entity.alive,
+        entity => entity.destroy?.(),
+      );
 
       this.hexLines.clear();
       for (const entity of this.entities) {
         entity.draw?.(this.hexLines);
       }
       this.hexLines.draw();
+
+      clearInputs();
     }
   }
 
-  constructor(entities, width, height) {
-    this.alive = true;
-    this.entities = entities;
-    this.width = width;
-    this.height = height;
+  static add(entity) {
+    console.assert(started);
+    this.entities.push(entity);
+    entity?.init?.();
   }
 }
 
-function cleanUpList(list, filter, destroy) {
-  let newLength = 0;
-  for (let i = 0; i < list.length; ++i) {
-    if (filter(list[i])) {
-      list[newLength++] = list[i];
-    } else {
-      destroy(list[i]);
-    }
+export class Pointer {
+  static [0] = {down: false, held: false};
+  static [1] = {down: false, held: false};
+  static [2] = {down: false, held: false};
+  static move = false;
+  static position = new Vec3();
+  static screenPosition = new Vec3();
+}
+
+let started = false;
+
+function initInput() {
+  window.addEventListener('pointerdown', event => {
+    const button = Pointer[event.button];
+    button.down = true;
+    button.held = true;
+  });
+  window.addEventListener('pointerup', event => {
+    const button = Pointer[event.button];
+    button.held = false;
+  });
+  window.addEventListener('pointermove', event => {
+    Pointer.move = true;
+    Pointer.screenPosition.setXyz(event.clientX, event.clientY);
+    Pointer.position.setXyz(
+      event.clientX - HexGame.width / 2,
+      -(event.clientY - HexGame.height / 2),
+    );
+  });
+}
+
+function clearInputs() {
+  for (let i = 0; i < 3; ++i) {
+    Pointer[i].down = false;
   }
-  list.length = newLength;
+  Pointer.move = false;
 }
